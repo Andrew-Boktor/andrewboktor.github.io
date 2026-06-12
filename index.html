@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andrew Boktor — Data Scientist & AI Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1B2A4A;
+      --teal:   #1E6B7A;
+      --teal-l: #e8f4f6;
+      --ink:    #2a2a2a;
+      --muted:  #6b7280;
+      --rule:   #e2e8f0;
+      --bg:     #f8fafc;
+      --white:  #ffffff;
+      --tag-bg: #eef2ff;
+      --tag-fg: #3730a3;
+      --accent: #0ea5e9;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    /* ── LAYOUT ─────────────────────────────────────────────────────────── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────────────────────── */
+    header {
+      padding: 56px 0 40px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 48px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .header-name h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+
+    .header-name .title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--teal);
+      margin-top: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .header-name .grad {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .header-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      padding-top: 4px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .contact-item:hover { color: var(--teal); }
+
+    .contact-item svg {
+      width: 14px; height: 14px;
+      flex-shrink: 0;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.18s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn svg {
+      width: 14px; height: 14px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--teal); }
+
+    .btn-outline {
+      border: 1.5px solid var(--rule);
+      color: var(--navy);
+      background: var(--white);
+    }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* ── SECTION ────────────────────────────────────────────────────────── */
+    section { margin-bottom: 52px; }
+
+    .section-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── SUMMARY ────────────────────────────────────────────────────────── */
+    .summary p {
+      color: var(--ink);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      max-width: 720px;
+    }
+
+    /* ── SKILLS ─────────────────────────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .skill-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .skill-card .skill-cat {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+      letter-spacing: 0.2px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-fg);
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .tag.teal { background: var(--teal-l); color: var(--teal); }
+
+    /* ── ENTRY (projects / experience) ──────────────────────────────────── */
+    .entries { display: flex; flex-direction: column; gap: 32px; }
+
+    .entry {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 22px 24px;
+      position: relative;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .entry-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .entry-badge {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--teal);
+      background: var(--teal-l);
+      padding: 3px 9px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .entry-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .entry-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .entry ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .entry ul li {
+      font-size: 0.86rem;
+      color: #374151;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .entry ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .sub-section {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .sub-section-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 7px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    /* ── EDUCATION ──────────────────────────────────────────────────────── */
+    .edu-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .edu-deg {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .edu-uni { font-size: 0.83rem; color: var(--muted); }
+
+    .edu-date {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--teal);
+      background: var(--teal-l);
+      padding: 4px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+
+    /* ── CERTS ──────────────────────────────────────────────────────────── */
+    .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 13px 16px;
+      font-size: 0.87rem;
+      color: var(--ink);
+    }
+
+    .cert-icon {
+      width: 30px; height: 30px;
+      background: var(--teal-l);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .cert-icon svg {
+      width: 15px; height: 15px;
+      stroke: var(--teal); fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .header-links { align-items: flex-start; }
+      .header-top { flex-direction: column; }
+      .entry { padding: 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HEADER ──────────────────────────────────────────────────────────── -->
+  <header>
+    <div class="header-top">
+      <div class="header-name">
+        <h1>Andrew Boktor</h1>
+        <div class="title">Data Scientist &amp; AI Engineer</div>
+        <div class="grad">E-JUST &nbsp;·&nbsp; AI &amp; Data Science &nbsp;·&nbsp; Graduating September 2026</div>
+      </div>
+      <div class="header-links">
+        <a class="contact-item" href="mailto:andrew.boktor@ejust.edu.eg">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          andrew.boktor@ejust.edu.eg
+        </a>
+        <a class="contact-item" href="tel:+201288699967">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 5.17 2 2 0 0 1 5.06 3h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L9.09 10.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.85.56 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
+          +20 128 869 9967
+        </a>
+        <a class="contact-item" href="https://www.linkedin.com/in/andrew-boktor-94ab09314" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a class="contact-item" href="https://github.com/Andrew-Boktor?tab=projects" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/andrew-boktor-94ab09314" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            Connect on LinkedIn
+          </a>
+          <a class="btn btn-outline" href="https://github.com/Andrew-Boktor?tab=projects" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            View Projects
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── SUMMARY ─────────────────────────────────────────────────────────── -->
+  <section class="summary">
+    <div class="section-label">Profile</div>
+    <p>Final-year AI &amp; Data Science student at E-JUST with hands-on experience building end-to-end ML systems, NLP pipelines, and GenAI applications. I have shipped an Arabic RAG system, a semantic audio search tool, a computer vision classifier reaching 92% accuracy, and a web scraping framework — all independently. As a freelance Data Scientist, I have delivered real solutions to healthcare and e-commerce clients under real deadlines. Seeking a summer internship to contribute to production-grade AI and data projects from day one.</p>
+  </section>
+
+  <!-- ── SKILLS ──────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-cat">Languages</div>
+        <div class="tags">
+          <span class="tag teal">Python</span><span class="tag teal">SQL</span>
+          <span class="tag">C++</span><span class="tag">JavaScript</span><span class="tag">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">ML / AI</div>
+        <div class="tags">
+          <span class="tag teal">XGBoost</span><span class="tag teal">Random Forest</span>
+          <span class="tag">SVM</span><span class="tag">KNN</span>
+          <span class="tag">Feature Engineering</span><span class="tag">Clustering</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">GenAI &amp; NLP</div>
+        <div class="tags">
+          <span class="tag teal">RAG Pipelines</span><span class="tag teal">LLMs (QWEN)</span>
+          <span class="tag">Arabic NLP</span><span class="tag">Semantic Search</span>
+          <span class="tag">Speech Recognition</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Computer Vision</div>
+        <div class="tags">
+          <span class="tag teal">MediaPipe BlazePose</span>
+          <span class="tag">OpenCV</span><span class="tag">Pose Estimation</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Data Engineering</div>
+        <div class="tags">
+          <span class="tag teal">Scrapy</span><span class="tag teal">BeautifulSoup</span>
+          <span class="tag">Selenium</span><span class="tag">ETL Pipelines</span><span class="tag">MySQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Visualization &amp; Tools</div>
+        <div class="tags">
+          <span class="tag teal">Tableau</span><span class="tag">Power BI</span>
+          <span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Projects</div>
+    <div class="entries">
+
+      <div class="entry">
+        <div class="entry-header">
+          <div class="entry-title">Karate Pose Correction &amp; Move Classifier</div>
+          <span class="entry-badge">Graduation Project</span>
+        </div>
+        <div class="entry-meta">E-JUST &nbsp;·&nbsp; 2025–2026</div>
+        <div class="entry-stack">
+          <span class="tag teal">Python</span><span class="tag teal">MediaPipe</span>
+          <span class="tag teal">XGBoost</span><span class="tag">OpenCV</span>
+          <span class="tag">scikit-learn</span>
+        </div>
+        <ul>
+          <li>Two-module AI system for real-time pose correction and automated karate technique classification</li>
+        </ul>
+        <div class="sub-section">
+          <div class="sub-section-title">Data &amp; Modeling</div>
+          <ul>
+            <li>3D joint data from MADS lab dataset (17 labeled moves) + 60–180 YouTube clips per technique</li>
+            <li>54 statistical features → weighted ensemble (KNN, SVM, RF, XGBoost) → <strong>83–84% accuracy</strong>, mae_geri reaching <strong>92%</strong></li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-section-title">Real-time Application</div>
+          <ul>
+            <li>MediaPipe BlazePose extracts 9 joint angles live; green/yellow/red feedback on split-screen view</li>
+            <li>Two portable deployment-ready packages: 208 MB pose corrector + 8.5 MB classifier with web integration docs</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div class="entry-title">Arabic RAG System for Islamic Fatwas</div>
+          <span class="entry-badge">Solo · 2025</span>
+        </div>
+        <div class="entry-meta">NLP &nbsp;·&nbsp; GenAI &nbsp;·&nbsp; Retrieval-Augmented Generation</div>
+        <div class="entry-stack">
+          <span class="tag teal">Python</span><span class="tag teal">QWEN LLM</span>
+          <span class="tag teal">RAG</span><span class="tag">Vector Indexing</span><span class="tag">Arabic NLP</span>
+        </div>
+        <ul>
+          <li>End-to-end RAG pipeline over scraped Arabic Islamic Fatwas from islam-web.net</li>
+          <li>QWEN LLM for Arabic QA with context-grounded retrieval and vector indexing</li>
+          <li>Full pipeline: scraping → Arabic preprocessing → vector store → inference</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div class="entry-title">Searchable Arabic Audio — Semantic Timestamp Retrieval</div>
+          <span class="entry-badge">Solo · 2025</span>
+        </div>
+        <div class="entry-meta">NLP &nbsp;·&nbsp; Speech Recognition &nbsp;·&nbsp; Semantic Search</div>
+        <div class="entry-stack">
+          <span class="tag teal">Python</span><span class="tag teal">Arabic ASR</span>
+          <span class="tag">Semantic Search</span><span class="tag">YouTube API</span>
+        </div>
+        <ul>
+          <li>Speak or type a question in Arabic → get the exact YouTube timestamp and link</li>
+          <li>Arabic speech recognition + semantic transcript search + timestamp alignment</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div class="entry-title">Arabic &amp; English Web Scraping Framework</div>
+          <span class="entry-badge">Solo · 2025</span>
+        </div>
+        <div class="entry-meta">Data Engineering &nbsp;·&nbsp; NLP Preprocessing</div>
+        <div class="entry-stack">
+          <span class="tag teal">Scrapy</span><span class="tag teal">BeautifulSoup</span>
+          <span class="tag teal">Selenium</span><span class="tag">Arabic NLP</span><span class="tag">JSON/CSV</span>
+        </div>
+        <ul>
+          <li>Modular pipelines handling RTL encoding, JS-rendered pages, and anti-bot measures</li>
+          <li>Arabic preprocessing: diacritics removal, normalization, encoding fixes</li>
+          <li>Structured output feeds all downstream NLP and RAG projects</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ──────────────────────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Experience</div>
+    <div class="entries">
+      <div class="entry">
+        <div class="entry-header">
+          <div class="entry-title">Freelance Data Scientist</div>
+          <span class="entry-badge">2025 – Present</span>
+        </div>
+        <div class="entry-meta">Upwork &nbsp;·&nbsp; Freelancer &nbsp;·&nbsp; Fiverr &nbsp;·&nbsp; Remote</div>
+
+        <div class="sub-section" style="margin-top:0; padding-top:0; border-top:none;">
+          <div class="sub-section-title">Healthcare Data Analysis &amp; Dashboard Automation</div>
+          <ul>
+            <li>Cleaned and analyzed 50,000+ patient records; improved data accuracy by <strong>25%</strong></li>
+            <li>Built 5+ Tableau dashboards — decision-making efficiency up <strong>30%</strong>, reporting time down <strong>50%</strong></li>
+            <li>Identified health trends contributing to <strong>15%</strong> increase in early disease detection</li>
+          </ul>
+        </div>
+
+        <div class="sub-section">
+          <div class="sub-section-title">Web Scraping — Arabic &amp; English Websites</div>
+          <ul>
+            <li>Built scraping pipelines with BeautifulSoup, Scrapy, and Selenium for JS-rendered Arabic/English sites</li>
+            <li>Delivered clean structured datasets with full Arabic text preprocessing for NLP pipelines</li>
+          </ul>
+        </div>
+
+        <div class="sub-section">
+          <div class="sub-section-title">Arabic Video Transcript Extraction</div>
+          <ul>
+            <li>Speech recognition + audio segmentation pipeline for Arabic video content</li>
+            <li>Handled dialect variation and timestamp alignment; output fed Arabic audio search project</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EDUCATION ───────────────────────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Education</div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-deg">B.Sc. Computer Science — AI &amp; Data Science Specialization</div>
+        <div class="edu-uni">Egypt-Japan University of Science and Technology (E-JUST), Alexandria, Egypt</div>
+      </div>
+      <div class="edu-date">Expected Sep 2026</div>
+    </div>
+  </section>
+
+  <!-- ── CERTIFICATIONS ──────────────────────────────────────────────────── -->
+  <section>
+    <div class="section-label">Certifications</div>
+    <div class="cert-list">
+      <div class="cert-item">
+        <div class="cert-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        AI &amp; Data Science Track — DEPI Internship Program (200+ training hours)
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        MindSet AI Track 2
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        MindSet AI Track 3
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ──────────────────────────────────────────────────────────── -->
+  <footer>
+    <p>andrew.boktor@ejust.edu.eg &nbsp;·&nbsp; Cairo, Egypt &nbsp;·&nbsp; Open to summer internships in Data Science &amp; AI</p>
+  </footer>
+
+</div>
+</body>
+</html>
